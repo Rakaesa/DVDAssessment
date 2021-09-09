@@ -1,14 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mthree.dvdassessment;
+
+import controller.DvdLibraryController;
+import dao.DvdLibraryDao;
+import dao.DvdLibraryDaoImpl;
+import ui.DvdLibraryView;
+import ui.UserIO;
+import ui.UserIOConsoleImpl;
 
 /**
  *
- * @author conno
+ * @author Eyob
  */
 public class App {
-    
+    public static void main(String[] args) {
+        DvdLibraryDao dvdLibraryDao = new DvdLibraryDaoImpl();
+        
+        UserIO userIo = new UserIOConsoleImpl();        
+        DvdLibraryView dvdLibraryView = new DvdLibraryView(userIo);
+        
+        DvdLibraryController dvdLibraryController = new DvdLibraryController(dvdLibraryDao, dvdLibraryView);        
+        dvdLibraryController.run();
+    }
 }
