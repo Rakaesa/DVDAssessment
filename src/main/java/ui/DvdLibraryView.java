@@ -34,6 +34,7 @@ public class DvdLibraryView {
         return io.readInt("Please select from the above choices.", 1, 6);
     }
     
+    //Get all the information for a new DVD from the user.
     public Dvd getNewDvdInfo() {
         String title = io.readString("Please enter the name of the DVD");
         String releaseDate = io.readString("Please enter the release date.");
@@ -45,7 +46,7 @@ public class DvdLibraryView {
         return currDvd;
     }
     
-    //Banners
+    //Banners Section
     public void displayCreateDvdBanner() {
         io.print("=== Add Dvd ===");
     }
@@ -78,7 +79,7 @@ public class DvdLibraryView {
         io.print("Unknown Command.");
     }
     
-    //Displays
+    //Displays Section
     public void displayDvdList(List<Dvd> dvdList){
         
         for(Dvd d : dvdList){
@@ -94,6 +95,7 @@ public class DvdLibraryView {
         return io.readString("Please enter the DVD Title.");
     }
     
+    //This edit function works very similarly to the 'add' function, naturally--it's just applying the information to an existing object instead of a new one.
     public Dvd editDvd(Dvd d){
         
         d.setTitle(io.readString("Please enter the name of the DVD"));

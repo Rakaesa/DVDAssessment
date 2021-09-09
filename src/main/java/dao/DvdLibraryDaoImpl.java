@@ -13,7 +13,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -25,53 +27,42 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
     public static final String DVD_FILE = "dvds.txt";
     public static final String DELIMITER = "::";
 
-    ArrayList<Dvd> library = new ArrayList<Dvd>();
+    private Map<String, Dvd> library = new HashMap<>();
 
     @Override
     public Dvd addDvd(Dvd d) throws DvdLibraryDaoException {
         //Jordan Lee
-        library.add(d);
+        library.put(d.getTitle(), d);
         return d;
     }
 
     @Override
     public List<Dvd> getAllDvds() throws DvdLibraryDaoException {
         //Jordan Lee
-        return library;
+        loadDvds();
+        return new ArrayList(library.values());
     }
 
     @Override
     public Dvd getDvd(String title) throws DvdLibraryDaoException {
         //Jordan Lee
-        for (Dvd dvd : library) {
-            if (dvd.getTitle().equalsIgnoreCase(title)) {
-                return dvd;
-            }
-        }
-        throw new DvdLibraryDaoException("DVD Not found");
+        loadDvds();
+        return library.get(title);
     }
 
     @Override
     public Dvd removeDvd(String title) throws DvdLibraryDaoException {
         //Jordan Lee
-        Dvd d = getDvd(title);
-        if (library.remove(d)) {
-            System.out.println("Item removed");
-        } else {
-            throw new DvdLibraryDaoException("Could not find that dvd");
-        }
-        return d;
-    }
-
-    @Override
-    public Dvd editDvd(String title) throws DvdLibraryDaoException {
-        Dvd found = getDvd(title);
-        return found;
+        loadDvds();
+        Dvd removedDvd = library.remove(title);
+        writeDvds();
+        return removedDvd;
     }
     
     public void writeDvds() throws DvdLibraryDaoException{
         PrintWriter out;
-
+        
+        List<Dvd> dvdList = getAllDvds();
         try {
             out = new PrintWriter(new FileWriter(DVD_FILE));
         } catch (IOException e) {
@@ -79,7 +70,7 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
                     "Could not save dvd data.", e);
         }
         
-        for (Dvd dvd : library) {
+        for (Dvd dvd : dvdList) {
             out.println(marshallDvd(dvd));
         }
     }
@@ -99,7 +90,7 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
         while(scanner.hasNextLine()){
             String current = scanner.nextLine();
             Dvd currentDvd = unMarshallDvd(current);
-            library.add(currentDvd);
+            library.put(currentDvd.getTitle(),currentDvd);
         }
         scanner.close();
         
@@ -130,7 +121,7 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
 
             // We are going to use the student id as the map key for our student object.
             // Put currentStudent into the map using student id as the key
-            library.add(currentDvd);
+            library.put(currentDvd.getTitle(),currentDvd);
         }
         // close scanner
         scanner.close();
