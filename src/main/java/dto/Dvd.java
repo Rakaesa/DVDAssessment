@@ -5,6 +5,9 @@
  */
 package dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Connor
@@ -17,6 +20,7 @@ public class Dvd {
     private String director;
     private String studio;
     private String rating;
+    private List<String> cast;
 
     public Dvd(String title, String releaseDate, String mpaaRating, String director, String studio, String rating) {
         this.title = title;
@@ -25,6 +29,16 @@ public class Dvd {
         this.director = director;
         this.studio = studio;
         this.rating = rating;
+    }
+    
+    public Dvd(String title, String releaseDate, String mpaaRating, String director, String studio, String rating, List<String> cast) {
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.mpaaRating = mpaaRating;
+        this.director = director;
+        this.studio = studio;
+        this.rating = rating;
+        this.cast = cast;
     }
 
     public String getTitle() {
@@ -73,6 +87,14 @@ public class Dvd {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+    
+    public List<String> getCast() {
+        return cast;
+    }
+
+    public void setCast(List<String> cast) {
+        this.cast = cast;
     }
     
 }

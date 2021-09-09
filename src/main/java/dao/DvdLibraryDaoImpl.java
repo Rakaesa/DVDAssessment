@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
 
     public static final String DVD_FILE = "dvds.txt";
     public static final String DELIMITER = "::";
+    public static final String DELIMITER_CAST = "<<";
 
     private Map<String, Dvd> library = new HashMap<>();
 
@@ -131,8 +133,20 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
 
     private Dvd unMarshallDvd(String currentLine) {
         String[] values = currentLine.split(DELIMITER);
-        Dvd newDvd = new Dvd(values[0], values[1], values[2], values[3], values[4], values[5]);
-        return newDvd;
+        List<String> cast = new ArrayList<String>();
+        if(values[values.length-1].contains("<<")){
+            String[] castArr = values[values.length-1].split(DELIMITER_CAST);
+            for(int i = 1;i<castArr.length;i++){
+                cast.add(castArr[i]);
+            }
+            values[5] = castArr[0];
+            Dvd newDvd = new Dvd(values[0], values[1], values[2], values[3], values[4], values[5], cast);  
+            return newDvd;
+        }
+        else{
+            Dvd newDvd = new Dvd(values[0], values[1], values[2], values[3], values[4], values[5]);
+            return newDvd;
+        }
     }
     
     @Override

@@ -84,6 +84,9 @@ public class DvdLibraryView {
             String dvdInfo = String.format("%s %n Release Date: %s %n MPAA Rating: %s %n Director: %s %n Studio: %s %n User Rating/Note: %s",
                     d.getTitle(), d.getReleaseDate(), d.getMpaaRating(), d.getDirector(), d.getStudio(), d.getRating());
             io.print(dvdInfo);
+            if(d.getCast()!=null){
+                io.print(" Search for this DVD to see cast info.");
+            }
         }
         io.readString("Hit enter to continue.");
         
@@ -120,6 +123,12 @@ public class DvdLibraryView {
             io.print("Director: "+d.getDirector());
             io.print("Studio: "+d.getStudio());
             io.print("User Rating or Note: "+d.getRating());
+            if(d.getCast()!=null){
+                io.print("Cast Members: ");
+                for(String s: d.getCast()){
+                    io.print(s);
+                }
+            }
         }
         else{
             io.print("No such DVD found.");
