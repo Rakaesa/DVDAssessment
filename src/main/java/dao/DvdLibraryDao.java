@@ -24,4 +24,8 @@ public interface DvdLibraryDao {
     
     void modifyDvd(String oldTitle, Dvd d) throws DvdLibraryDaoException;
     
+    void loadDvds() throws DvdLibraryDaoException;
+    
+    void writeDvds() throws DvdLibraryDaoException;
+    
 }

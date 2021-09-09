@@ -19,6 +19,7 @@ public class DvdLibraryController {
     }
     
     public void run() throws DvdLibraryDaoException {
+        dvdLibraryDao.loadDvds();
         OUTER:
         while (true) {
             int menuSelection = dvdLibraryView.printMenuAndGetSelection();
@@ -40,6 +41,7 @@ public class DvdLibraryController {
                     findDvd();
                     break;
                 case 6:
+                    dvdLibraryDao.writeDvds();
                     System.exit(0);
                     break OUTER;
             }
@@ -68,8 +70,12 @@ public class DvdLibraryController {
         dvdLibraryView.displayEditDvdBanneR();
         String title = dvdLibraryView.displayGetDvdTitleChoice();
         
-        Dvd dvd = dvdLibraryDao.getDvd(title);
-        dvdLibraryDao.modifyDvd(title, dvdLibraryView.editDvd(dvd));
+        Dvd oldDvd = dvdLibraryDao.getDvd(title);
+        Dvd newDvd = (dvdLibraryView.editDvd(oldDvd));
+        if(newDvd!=null){
+        dvdLibraryDao.modifyDvd(title, newDvd);
+        }
+        
     }
 
     private void listDvds() throws DvdLibraryDaoException {

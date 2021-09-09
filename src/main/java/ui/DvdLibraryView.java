@@ -98,14 +98,19 @@ public class DvdLibraryView {
     //This edit function works very similarly to the 'add' function, naturally--it's just applying the information to an existing object instead of a new one.
     public Dvd editDvd(Dvd d){
         
-        d.setTitle(io.readString("Please enter the name of the DVD"));
-        d.setReleaseDate(io.readString("Please enter the release date."));
-        d.setMpaaRating(io.readString("Please enter the MPAA Rating."));
-        d.setDirector(io.readString("Please enter the Director's name."));
-        d.setStudio(io.readString("Please enter the studio name."));
-        d.setRating(io.readString("Please enter your rating or additional note."));
-        return d;
-        
+        if(d!=null){
+            d.setTitle(io.readString("Please enter the name of the DVD"));
+            d.setReleaseDate(io.readString("Please enter the release date."));
+            d.setMpaaRating(io.readString("Please enter the MPAA Rating."));
+            d.setDirector(io.readString("Please enter the Director's name."));
+            d.setStudio(io.readString("Please enter the studio name."));
+            d.setRating(io.readString("Please enter your rating or additional note."));
+            return d;
+        }
+        else{
+            io.print("No such DVD found.");
+            return null;
+        }
     }
 
     

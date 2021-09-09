@@ -33,21 +33,18 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
     public Dvd addDvd(Dvd d) throws DvdLibraryDaoException {
         //Jordan Lee
         library.put(d.getTitle(), d);
-        writeDvds();
         return d;
     }
 
     @Override
     public List<Dvd> getAllDvds() throws DvdLibraryDaoException {
         //Jordan Lee
-        loadDvds();
         return new ArrayList(library.values());
     }
 
     @Override
     public Dvd getDvd(String title) throws DvdLibraryDaoException {
         //Jordan Lee
-        loadDvds();
         return library.get(title);
     }
 
@@ -60,6 +57,7 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
         return removedDvd;
     }
     
+    @Override
     public void writeDvds() throws DvdLibraryDaoException{
         PrintWriter out;
         
@@ -78,6 +76,7 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
         }
     }
     
+    @Override
     public void loadDvds() throws DvdLibraryDaoException{
     
         Scanner scanner;
@@ -139,9 +138,9 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
     @Override
     public void modifyDvd(String oldTitle, Dvd d) throws DvdLibraryDaoException{
         
-        library.remove(oldTitle);
-        library.put(d.getTitle(), d);
-        writeDvds();
-        
+        if(oldTitle!=null){
+                library.remove(oldTitle);
+                library.put(d.getTitle(), d);
+        }
     }
 }
