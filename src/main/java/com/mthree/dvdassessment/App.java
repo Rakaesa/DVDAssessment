@@ -2,6 +2,7 @@ package com.mthree.dvdassessment;
 
 import controller.DvdLibraryController;
 import dao.DvdLibraryDao;
+import dao.DvdLibraryDaoException;
 import dao.DvdLibraryDaoImpl;
 import ui.DvdLibraryView;
 import ui.UserIO;
@@ -12,7 +13,7 @@ import ui.UserIOConsoleImpl;
  * @author Eyob
  */
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DvdLibraryDaoException {
         DvdLibraryDao dvdLibraryDao = new DvdLibraryDaoImpl();
         
         UserIO userIo = new UserIOConsoleImpl();        
