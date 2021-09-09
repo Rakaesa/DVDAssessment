@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author conno
+ * @author Connor
  */
 public interface DvdLibraryDao {
     

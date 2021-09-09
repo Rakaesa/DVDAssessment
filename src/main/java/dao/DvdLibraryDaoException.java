@@ -7,7 +7,7 @@ package dao;
 
 /**
  *
- * @author conno
+ * @author Connor
  */
 public class DvdLibraryDaoException extends Exception{
     

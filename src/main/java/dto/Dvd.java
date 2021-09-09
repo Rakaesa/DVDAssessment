@@ -7,7 +7,7 @@ package dto;
 
 /**
  *
- * @author conno
+ * @author Connor
  */
 public class Dvd {
     

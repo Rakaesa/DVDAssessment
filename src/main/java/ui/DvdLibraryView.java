@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author conno
+ * @author Connor
  */
 public class DvdLibraryView {
     
@@ -93,7 +93,7 @@ public class DvdLibraryView {
     public String displayGetDvdTitleChoice(){
         return io.readString("Please enter the DVD Title.");
     }
-        
+    
     public Dvd editDvd(Dvd d){
         
         d.setTitle(io.readString("Please enter the name of the DVD"));

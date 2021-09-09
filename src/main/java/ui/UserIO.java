@@ -7,7 +7,7 @@ package ui;
 
 /**
  *
- * @author conno
+ * @author Connor
  */
 public interface UserIO {
     
