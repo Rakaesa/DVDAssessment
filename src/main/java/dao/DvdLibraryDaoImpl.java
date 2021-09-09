@@ -33,6 +33,7 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
     public Dvd addDvd(Dvd d) throws DvdLibraryDaoException {
         //Jordan Lee
         library.put(d.getTitle(), d);
+        writeDvds();
         return d;
     }
 
@@ -62,16 +63,18 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
     public void writeDvds() throws DvdLibraryDaoException{
         PrintWriter out;
         
-        List<Dvd> dvdList = getAllDvds();
         try {
             out = new PrintWriter(new FileWriter(DVD_FILE));
         } catch (IOException e) {
             throw new DvdLibraryDaoException(
                     "Could not save dvd data.", e);
         }
-        
+        List<Dvd> dvdList = getAllDvds();
+        String dvdAsText;
         for (Dvd dvd : dvdList) {
+            dvdAsText = marshallDvd(dvd);
             out.println(marshallDvd(dvd));
+            out.flush();
         }
     }
     

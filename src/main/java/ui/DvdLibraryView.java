@@ -84,7 +84,7 @@ public class DvdLibraryView {
         
         for(Dvd d : dvdList){
             String dvdInfo = String.format("%s %n Release Date: %s %n MPAA Rating: %s %n Director: %s %n Studio: %s %n User Rating/Note: %s",
-                    d.getTitle(), d.getMpaaRating(), d.getDirector(), d.getStudio(), d.getRating());
+                    d.getTitle(), d.getReleaseDate(), d.getMpaaRating(), d.getDirector(), d.getStudio(), d.getRating());
             io.print(dvdInfo);
         }
         io.readString("Hit enter to continue.");
