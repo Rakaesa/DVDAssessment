@@ -17,12 +17,12 @@ public interface DvdLibraryDao {
     Dvd addDvd(Dvd d) throws DvdLibraryDaoException;
 
 
-    List<Dvd> getAllDvds() throws AddressBookDaoException;
+    List<Dvd> getAllDvds() throws DvdLibraryDaoException;
 
 
-    Dvd getDvd(String title) throws AddressBookDaoException;
+    Dvd getDvd(String title) throws DvdLibraryDaoException;
 
 
-    Dvd removeDvd(String title) throws AddressBookDaoException;
+    Dvd removeDvd(String title) throws DvdLibraryDaoException;
     
 }
