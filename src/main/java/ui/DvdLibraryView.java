@@ -6,6 +6,8 @@
 package ui;
 
 import dto.Dvd;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -48,6 +50,10 @@ public class DvdLibraryView {
         io.print("=== Add Dvd ===");
     }
     
+    public void displayEditDvdBanneR(){
+        io.print("=== Edit Dvd ===");
+    }
+    
     public void displayCreateSuccessBanner() {
         io.readString("Dvd added. Hit enter to continue.");
     }
@@ -84,9 +90,22 @@ public class DvdLibraryView {
         
     }
     
-    public String getDvdTitleChoice(){
+    public String displayGetDvdTitleChoice(){
         return io.readString("Please enter the DVD Title.");
     }
+        
+    public Dvd editDvd(Dvd d){
+        
+        d.setTitle(io.readString("Please enter the name of the DVD"));
+        d.setReleaseDate(io.readString("Please enter the release date."));
+        d.setMpaaRating(io.readString("Please enter the MPAA Rating."));
+        d.setDirector(io.readString("Please enter the Director's name."));
+        d.setStudio(io.readString("Please enter the studio name."));
+        d.setRating(io.readString("Please enter your rating or additional note."));
+        return d;
+        
+    }
+
     
     public void displayDvd(Dvd d){
         if(d!=null){
@@ -116,5 +135,6 @@ public class DvdLibraryView {
     public void displayErrorMessage(String errorMsg) {
         io.print("=== ERROR ===");
         io.print(errorMsg);
-    }    
+    }
+
 }
