@@ -135,4 +135,13 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
         Dvd newDvd = new Dvd(values[0], values[1], values[2], values[3], values[4], values[5]);
         return newDvd;
     }
+    
+    @Override
+    public void modifyDvd(String oldTitle, Dvd d) throws DvdLibraryDaoException{
+        
+        library.remove(oldTitle);
+        library.put(d.getTitle(), d);
+        writeDvds();
+        
+    }
 }

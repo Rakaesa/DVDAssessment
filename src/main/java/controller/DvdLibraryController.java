@@ -69,8 +69,7 @@ public class DvdLibraryController {
         String title = dvdLibraryView.displayGetDvdTitleChoice();
         
         Dvd dvd = dvdLibraryDao.getDvd(title);
-        
-        dvdLibraryView.editDvd(dvd);
+        dvdLibraryDao.modifyDvd(title, dvdLibraryView.editDvd(dvd));
     }
 
     private void listDvds() throws DvdLibraryDaoException {
