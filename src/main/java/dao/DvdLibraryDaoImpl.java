@@ -70,9 +70,7 @@ public class DvdLibraryDaoImpl implements DvdLibraryDao {
                     "Could not save dvd data.", e);
         }
         List<Dvd> dvdList = getAllDvds();
-        String dvdAsText;
         for (Dvd dvd : dvdList) {
-            dvdAsText = marshallDvd(dvd);
             out.println(marshallDvd(dvd));
             out.flush();
         }
